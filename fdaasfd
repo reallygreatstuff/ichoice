@@ -1,0 +1,123 @@
+[1mdiff --git a/index.html b/index.html[m
+[1mindex 79ccc1d..000a922 100644[m
+[1m--- a/index.html[m
+[1m+++ b/index.html[m
+[36m@@ -37,69 +37,7 @@[m
+ [m
+   <section id="releases">[m
+     <h3>Upcoming Releases</h3>[m
+[31m-    <div class="tiles">[m
+[31m-      <div class="tile">[m
+[31m-        <img src="img/releases/AA1253-400.jpg" alt="">[m
+[31m-        <div class="overlay">[m
+[31m-          <div class="details">[m
+[31m-            <p class="name">AIR JORDAN XXXII RUSS</p>[m
+[31m-            <p class="date">RELEASE DATE: NOVEMBER 22ND, 2017</p>[m
+[31m-            <p class="price">$185</p>[m
+[31m-          </div>[m
+[31m-        </div>[m
+[31m-      </div>[m
+[31m-      <div class="tile">[m
+[31m-        <img src="img/releases/555088-710.jpg" alt="">[m
+[31m-        <div class="overlay">[m
+[31m-          <div class="details">[m
+[31m-            <p class="name">AIR JORDAN 1 RETRO HIGH OG “WHEAT”</p>[m
+[31m-            <p class="date">RELEASE DATE: NOVEMBER 25TH, 2017</p>[m
+[31m-            <p class="price">$160</p>[m
+[31m-          </div>[m
+[31m-        </div>[m
+[31m-      </div>[m
+[31m-      <div class="tile">[m
+[31m-        <img src="img/releases/AA1256-603.jpg" alt="">[m
+[31m-        <div class="overlay">[m
+[31m-          <div class="details">[m
+[31m-            <p class="name">AIR JORDAN XXXII “WIN LIKE ’96”</p>[m
+[31m-            <p class="date">RELEASE DATE: DECEMBER 2ND, 2017</p>[m
+[31m-            <p class="price">$160</p>[m
+[31m-          </div>[m
+[31m-        </div>[m
+[31m-      </div>[m
+[31m-      <div class="tile">[m
+[31m-        <img src="img/releases/jordan-11-win-like-96.jpg" alt="">[m
+[31m-        <div class="overlay">[m
+[31m-          <div class="details">[m
+[31m-            <p class="name">AIR JORDAN 11 “WIN LIKE ’96”</p>[m
+[31m-            <p class="date">RELEASE DATE: DECEMBER 9TH, 2017</p>[m
+[31m-            <p class="price">$220</p>[m
+[31m-          </div>[m
+[31m-        </div>[m
+[31m-      </div>[m
+[31m-      <div class="tile">[m
+[31m-        <img src="img/releases/881432-612.jpg" alt="">[m
+[31m-        <div class="overlay">[m
+[31m-          <div class="details">[m
+[31m-            <p class="name">AIR JORDAN 5 PREMIUM</p>[m
+[31m-            <p class="date">RELEASE DATE: DECEMBER 14TH, 2017</p>[m
+[31m-            <p class="price">$400</p>[m
+[31m-          </div>[m
+[31m-        </div>[m
+[31m-      </div>[m
+[31m-      <div class="tile">[m
+[31m-        <img src="img/releases/414571-042.jpg" alt="">[m
+[31m-        <div class="overlay">[m
+[31m-          <div class="details">[m
+[31m-            <p class="name">AIR JORDAN 13</p>[m
+[31m-            <p class="date">RELEASE DATE: DECEMBER 21ST, 2017</p>[m
+[31m-            <p class="price">$190</p>[m
+[31m-          </div>[m
+[31m-        </div>[m
+[31m-      </div>[m
+[31m-    </div>[m
+[31m-    [m
+[32m+[m[32m    <div class="tiles">[m[41m  [m
+   </section>[m
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>[m
+   <script type="text/javascript" src="js/slick.js"></script>[m
+[1mdiff --git a/js/index.js b/js/index.js[m
+[1mindex 7953588..8785da0 100644[m
+[1m--- a/js/index.js[m
+[1m+++ b/js/index.js[m
+[36m@@ -6,4 +6,40 @@[m [m$(document).ready(function(){[m
+ 		autoplaySpeed: 2000,[m
+ 	});[m
+ [m
+[31m-});[m
+\ No newline at end of file[m
+[32m+[m	[32m//Get the show release[m
+[32m+[m	[32m$.ajax({[m
+[32m+[m	[32m    url: 'data/shoes.json',[m
+[32m+[m	[32m    type: 'GET'[m
+[32m+[m	[32m  })[m
+[32m+[m
+[32m+[m	[32m  .done(displayShoes)[m
+[32m+[m	[32m  .fail(function(error){[m
+[32m+[m	[32m    console.log(error);[m
+[32m+[m	[32m  });[m
+[32m+[m
+[32m+[m	[32m  function displayShoes(response) {[m
+[32m+[m	[41m  [m	[32mvar releases = response.releases;[m
+[32m+[m	[41m  [m	[32mvar html = '';[m
+[32m+[m	[41m  [m	[32m$(releases).each(function(i, shoe){[m
+[32m+[m	[41m  [m		[32mvar name = shoe.name;[m
+[32m+[m	[41m  [m		[32mvar date = shoe.date;[m
+[32m+[m	[41m  [m		[32mvar image = shoe.image;[m
+[32m+[m	[41m  [m		[32mvar price = shoe.price;[m
+[32m+[m
+[32m+[m	[41m  [m		[32mhtml += `<div class="tile">[m
+[32m+[m				[32m        <img src="`+ image +`" alt="">[m
+[32m+[m					[32m    <div class="overlay">[m
+[32m+[m					[32m      <div class="details">[m
+[32m+[m					[32m        <p class="name">`+ name +`</p>[m
+[32m+[m					[32m        <p class="date">`+ date +`</p>[m
+[32m+[m					[32m        <p class="price">`+ price +`</p>[m
+[32m+[m					[32m      </div>[m
+[32m+[m					[32m    </div>[m
+[32m+[m					[32m  </div>`;[m
+[32m+[m	[32m  });[m
+[32m+[m
+[32m+[m	[41m  [m	[32m$('.tiles').html(html);[m
+[32m+[m
+[32m+[m	[32m  }[m
+[32m+[m
+[32m+[m[32m  });[m
+\ No newline at end of file[m
