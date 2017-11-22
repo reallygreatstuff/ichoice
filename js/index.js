@@ -17,6 +17,20 @@ $(document).ready(function(){
 	    console.log(error);
 	  });
 
+//Smooth Window Scroll
+    $("nav a").click(function(e) {
+        var id = $(this).attr('href'); //#home
+        var headerHeight = $('header').height();
+
+        $('html, body').animate({
+            scrollTop: $(id).offset().top - headerHeight
+        }, 1000);
+
+        e.preventDefault();
+    });
+/////////////////////////////////////
+
+
 	  function displayShoes(response) {
 	  	var releases = response.releases;
 	  	var html = '';
